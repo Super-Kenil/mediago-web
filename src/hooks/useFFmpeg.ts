@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { FFmpeg } from '@ffmpeg/ffmpeg';
-import { fetchFile } from '@ffmpeg/util';
+import { fetchFile, toBlobURL } from '@ffmpeg/util';
 
 export type ImageOptions = {
     quality?: number;
@@ -29,10 +29,10 @@ export function useFFmpeg() {
         });
 
         try {
-            const base = window.location.origin;
+            const baseURL = 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/esm';
             await ffmpeg.load({
-                coreURL: `${base}/ffmpeg/ffmpeg-core.js`,
-                wasmURL: `${base}/ffmpeg/ffmpeg-core.wasm`,
+                coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+                wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
             });
             setIsLoaded(true);
         } catch (error) {
