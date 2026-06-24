@@ -1,0 +1,14 @@
+# MediaGo - Free Client-Side Media Converter
+
+Secure, client-side, browser-only file converter that processes all files locally using WebAssembly (FFmpeg) and browser APIs. No files are uploaded to any server.
+
+## Features
+- Convert image formats: JPG, PNG, WebP, GIF, HEIC, SVG.
+- Convert video/audio formats: MP4, MOV, AVI, WEBM to GIF, WebM, MP3.
+- Parameter adjustment: scale/resize, quality slider, framerate controls.
+- Safe, private, and fully client-side.
+
+## Technical Details
+- Runs inside browser sandboxed environment.
+- Utilizes `@ffmpeg/ffmpeg` (WASM) and browser Canvas/`heic2any` APIs.
+- Routing is virtual under client-side React router; all conversion paths point to the main client app.
